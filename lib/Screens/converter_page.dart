@@ -11,6 +11,9 @@ class ConverterPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('The Computer\' language'),
+        actions: [
+          IconButton(onPressed: () => theConverterProvider.clear(), icon: const Icon(Icons.delete))
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -36,6 +39,7 @@ class ConverterPage extends StatelessWidget {
                     ),
                   ),
                   controller: theConverterProvider.theDecimalNumberController,
+                  maxLines: null,
                   keyboardType: TextInputType.number,
                   onChanged: (text){
                   theConverterProvider.input = text;
@@ -49,22 +53,22 @@ class ConverterPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 18
               ),),
-              const SizedBox(height: 25,),
-              Text(theConverterProvider.binary),
+              const SizedBox(height: 10,),
+              Text(theConverterProvider.binary, softWrap: true,),
               const SizedBox(height: 25,),
               const Text('Octal:', style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18
               ),),
-              const SizedBox(height: 25,),
-              Text(theConverterProvider.octal),
+              const SizedBox(height: 10,),
+              Text(theConverterProvider.octal, softWrap: true,),
               const SizedBox(height: 25,),
               const Text('HexDecimal:', style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18
               ),),
-              const SizedBox(height: 25,),
-              Text(theConverterProvider.hexDecimal),
+              const SizedBox(height: 10,),
+              Text(theConverterProvider.hexDecimal,softWrap: true,),
             ],
           ),
         ),

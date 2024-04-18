@@ -9,7 +9,7 @@ class CalculatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> theButtonsValue = [
-      'AC','(  )','%','÷',
+      'AC','⌫','%','÷',
       '7','8','9','x',
       '4','5','6','-',
       '1','2','3','+',
@@ -23,20 +23,33 @@ class CalculatorPage extends StatelessWidget {
       body: SafeArea(
           child: Column(
                     children: [
-                        Expanded(child: Padding(
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(theCalProvider.thePreviousNumber, style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black54
+                            ) ),
+                          ),
+                        ), Expanded(
+                        child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Text(theCalProvider.displayNumber, style: const TextStyle(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w500
+                                fontSize: 26,
+                                fontWeight: FontWeight.w500
                             ) ),
                           ),
-                        )),
+                        ),
+                      ),
                         Expanded(
-                            flex: 6,
+                            flex: 10,
                             child: GridView.builder(
                                 itemCount: theButtonsValue.length,
+                                shrinkWrap: true,
                                 physics: const NeverScrollableScrollPhysics(),
                                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
                             itemBuilder: (context, index){
@@ -55,15 +68,21 @@ class CalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String theValue = (value == '+/-')?'pn':value;
     var theInnerCalProvider = Provider.of<CalLogic>(context);
-    return Padding(
-        padding: const EdgeInsets.all(10.0),
-      child: ElevatedButton(onPressed: () => theInnerCalProvider.handleInput(value) ,child: Expanded(
-        child: Text(value, style:  const  TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold
-        ),),
-      )),
-    );
+    return ElevatedButton(
+        onPressed: () => theInnerCalProvider.handleInput(theValue),
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.zero,
+            side: BorderSide(
+                color: Colors.black12
+                      )
+                  ),
+                  )
+        ,child: Text(value, style:  const  TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold
+    ),));
   }
 }
