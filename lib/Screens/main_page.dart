@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled6/Screens/cal_page.dart';
+import 'package:untitled6/Screens/moneybox_page.dart';
 
 import 'converter_page.dart';
 
@@ -30,6 +31,8 @@ class TheMainPage extends StatelessWidget {
               ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const CalculatorPage())), child: const Text('Arithmetic Calculator')),
               const SizedBox(height: 15,),
               ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const ConverterPage())), child: const Text('Digital Converter')),
+              const SizedBox(height: 15,),
+              ElevatedButton(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MoneyBoxScreen())), child: const Text('My MoneyBox')),
             ],
           ),
         ),
